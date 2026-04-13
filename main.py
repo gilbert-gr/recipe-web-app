@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from data import CATEGORIES
+from data import CATEGORIES, AREAS
 from flask_bootstrap import Bootstrap5
 from datetime import datetime
 import requests
@@ -78,6 +78,11 @@ def get_random_meal():
 @app.route("/category-search")
 def category_search():
     return render_template("search-by.html", categories=CATEGORIES)
+
+
+@app.route("/area-search")
+def area_search():
+    return render_template("search-by.html", areas=AREAS)
 
 
 @app.route("/search-by/<string:choice>")
