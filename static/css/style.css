@@ -1,0 +1,129 @@
+nav {
+    background-color: #8ACCD5
+}
+
+footer, .yellow {
+    background-color: #F8F8E1
+}
+
+.feature-icon {
+    background-color:#F8F8E1 !important;
+    width: 3rem;
+    height: 3rem;
+    border-radius: .75rem;
+}
+
+.justify {
+    text-align:justify
+}
+
+.dark-pink {
+    background-color: #FF90BB
+}
+
+.pink {
+    background-color: #FFC1DA
+}
+
+.green {
+ background-color:#8ACCD5
+}
+
+p, a, .btn {
+    font-family: Instrument Sans
+}
+
+h5, h3, h2, h1, {
+    font-family: Young Serif;
+}
+
+hr {
+    width: 80%;
+    margin: auto
+}
+
+.btn-green {
+    background-color:#8ACCD5;
+    color: black;
+    border-color: black
+}
+
+.btn-green:hover {
+    color: black;
+    background-color: #F8F8E1;
+    border-color: black;
+}
+
+.outline-btn {
+    color: black;
+    border-color: black;
+}
+
+.outline-btn:hover {
+    color: black;
+    background-color: #FFC1DA;
+    border-color: black;
+}
+
+.nav-black {
+    color: black;
+    font-family:Young Serif
+}
+
+.nav-black:hover {
+    color: #FFC1DA !important;
+}
+
+.carousel-item {
+  height: 30em;
+}
+
+.carousel-img {
+    height: 100%
+}
+
+html, body {
+    height: 100%;
+    margin: 0
+}
+
+.yellow-link {
+    color: #F8F8E1
+}
+
+.yellow_link: hover {
+    color: #FF90BB
+}
+
+.btn-carousel {
+    color: black;
+    background-color: #F8F8E1;
+    border-color: black
+}
+
+.btn-carousel:hover {
+    background-color: #FF90BB;
+    border-color: black
+}
+
+.btn-pink {
+    color: black;
+    background-color: #FFC1DA;
+    border-color: black
+}
+
+.btn-pink:hover {
+    background-color: #FF90BB
+}
+
+.btn-header {
+    color: black;
+    background-color: #FFC1DA;
+    border-color: black
+}
+
+.btn-header:hover {
+    color: #FFC1DA;
+    background-color: black;
+    border-color: #FFC1DA
+}

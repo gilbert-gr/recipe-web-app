@@ -1,0 +1,47 @@
+{% include 'header.html' %}
+
+<div class="dark-pink">
+    <div class="container">
+        <h1 class="py-5 px-5">
+            <b>{{ meal[0]['strMeal'] }}</b>
+        </h1>
+        <div class="col-12 col-lg-6 text-center pb-5 px-5">
+            <img class="img-fluid" src="{{ meal[0]['strMealThumb'] }}" alt="Recipe Image">
+        </div>
+        <div class="px-5">
+            <div>
+                <h3>Area:</h3>
+                <ul>
+                    <li>{{ meal[0]['strArea'] }}</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Category:</h3>
+                <ul>
+                    <li>{{ meal[0]['strCategory'] }}</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Ingredients:</h3>
+                <ul>
+                    {% for n in range(1, 21) %}
+                    {% if meal[0]['strIngredient' ~ n] %}
+                    <li>{{ meal[0]['strIngredient' ~ n] }} ({{ meal[0]['strMeasure' ~ n] }})</li>
+                    {% endif %}
+                    {% endfor %}
+
+                </ul>
+            </div>
+
+            <div class="pt-3 pb-5">
+                <h3>Process:</h3>
+                <p>
+                    {{ meal[0]['strInstructions'] }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'footer.html' %}

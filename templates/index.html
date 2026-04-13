@@ -1,0 +1,156 @@
+{% include 'header.html' %}
+
+
+<div class="py-5 dark-pink">
+    <div class="container">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-12 col-lg-6 text-center">
+                <img src="{{ url_for('static', filename='images/ramen-bowl.jpg') }}"
+                     class="d-block mx-auto img-fluid"
+                     alt="Ramen Bowl" width="500rem" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3 text-center text-lg-start">
+                    Don't know what to cook?
+                    You are in the right place!
+                </h1>
+                <p class="lead text-center text-lg-start">
+                    In this website you will find all that you need to become a great chef! There are a lot
+                    of recipes for everybody, from beginners to experts, are you ready to surprise your loved ones with
+                    a delicious meal?
+                </p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <div class="dropdown">
+                        <a class="btn btn-info btn-green btn-lg px-4 me-md-2 dropdown-toggle w-100" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Start searching
+                        </a>
+
+                        <ul class="dropdown-menu">
+<!--                            <li><a class="dropdown-item" href="#">By main ingredient</a></li>-->
+<!--                            <li><a class="dropdown-item" href="#">By name</a></li>-->
+                            <li><a class="dropdown-item" href="{{ url_for('category_search') }}">By category</a></li>
+<!--                            <li><a class="dropdown-item" href="#">By area</a></li>-->
+                        </ul>
+                    </div>
+
+                    <a type="button" class="btn btn-outline-secondary outline-btn btn-lg px-4"
+                       href="{{ url_for('get_random_meal') }}">Get a random meal</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="pink">
+    <div class="container pink px-4 py-5" id="featured-3">
+        <h2 class="pb-2 fs-1 border-bottom">What you will find here</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                    <img src="../static/icons/star.svg" alt="Star Icon">
+                </div>
+                <h3 class="fs-2 text-body-emphasis">Inspiration</h3>
+                <p class="justify">
+                    Did you ever felt the sensation that you don't know what to cook for dinner? The solution is
+                    right here! Every meal can be unique, sometimes it just helps to give a look at some examples.
+                </p>
+                <!--                <a href="#" class="icon-link">-->
+                <!--                Call to action-->
+                <!--                <svg class="bi" aria-hidden="true">-->
+                <!--                    <use xlink:href="#chevron-right"></use>-->
+                <!--                </svg>-->
+                <!--                </a>-->
+            </div>
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                    <img src="../static/icons/graph-up-arrow.svg" alt="Graph Up Arrow Icon">
+                </div>
+                <h3 class="fs-2 text-body-emphasis">A skillboost</h3>
+                <p class="justify">
+                    For all of those who think that cooking is difficult... They are wrong. Just follow our step-by-step
+                    guides! The important thing is to try, maybe and you will be shocked by your delicious meals.
+                </p>
+                <!--                <a href="#" class="icon-link">-->
+                <!--                Call to action-->
+                <!--                <svg class="bi" aria-hidden="true">-->
+                <!--                    <use xlink:href="#chevron-right"></use>-->
+                <!--                </svg>-->
+                <!--                </a>-->
+            </div>
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                    <img src="../static/icons/clock-history.svg" alt="Clock">
+                </div>
+                <h3 class="fs-2 text-body-emphasis">A new hobby</h3>
+                <p class="justify">
+                    Want to spend some time trying exotic recipes or some big classics? Well, you will discover that is
+                    a lot of fun! You could also share the kitchen with others and prepare meals together.
+                </p>
+                <!--                <a href="#" class="icon-link">-->
+                <!--                Call to action-->
+                <!--                <svg class="bi" aria-hidden="true">-->
+                <!--                    <use xlink:href="#chevron-right"></use>-->
+                <!--                </svg>-->
+                <!--                </a>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="green py-5">
+    <div class="container">
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ example_meals[0][0]['strMealThumb'] }}" class="d-block img-fluid carousel-img mx-auto"
+                         alt="{{ example_meals[0][0]['strMeal'] }}">
+                    <div class="carousel-caption d-block d-md-block">
+                        <a type="button" class="btn btn-info btn-carousel btn-lg px-4 me-md-2"
+                           href="{{ url_for('get_recipe', meal_id=example_meals[0][0]['idMeal']) }}">
+                            {{ example_meals[0][0]['strMeal'] }}</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ example_meals[1][0]['strMealThumb'] }}" class="d-block img-fluid carousel-img mx-auto"
+                         alt="{{ example_meals[1][0]['strMeal'] }}">
+                    <div class="carousel-caption d-block d-md-block">
+                        <a type="button" class="btn btn-info btn-carousel btn-lg px-4 me-md-2"
+                           href="{{ url_for('get_recipe', meal_id=example_meals[1][0]['idMeal']) }}">
+                            {{ example_meals[1][0]['strMeal'] }}</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ example_meals[2][0]['strMealThumb'] }}" class="d-block img-fluid carousel-img mx-auto"
+                         alt="{{ example_meals[2][0]['strMeal'] }}">
+                    <div class="carousel-caption d-block d-md-block">
+                        <a type="button" class="btn btn-info btn-carousel btn-lg px-4 me-md-2"
+                           href="{{ url_for('get_recipe', meal_id=example_meals[2][0]['idMeal']) }}">
+                            {{ example_meals[2][0]['strMeal'] }}</a>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}

@@ -1,0 +1,28 @@
+{% include 'header.html' %}
+
+<div class="dark-pink" style="height:100%">
+    <div class="container py-5">
+        <h1 class="pb-5">
+            {% if categories %}
+            Choose your category:
+            {% elif areas %}
+            Choose your area:
+            {% endif %}
+        </h1>
+        <div class="px-5 justify-content-center">
+            {% if categories %}
+                {% for category in categories %}
+                    <a type="button" class="btn btn-info btn-green btn-lg px-4 me-md-2 my-2"
+                       href="{{ url_for('search_by', choice=category, method='c') }}">{{ category }}</a>
+                {% endfor %}
+            {% elif areas %}
+                {% for area in areas %}
+                    <a type="button" class="btn btn-info btn-green btn-lg px-4 me-md-2 my-2"
+                       href="{{ url_for('search_by', choice=area, method='a') }}">{{ area }}</a>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}

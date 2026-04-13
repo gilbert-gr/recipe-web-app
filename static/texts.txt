@@ -1,0 +1,35 @@
+Don't know what to cook? You are in the right place!
+
+In this website you will find all that you need to become a great chef! There are a lot of recipes for everybody, from
+beginners to experts, are you ready to surprise your loved ones with a delicious meal?
+
+
+What you will find here
+
+Inspiration
+Did you ever felt the sensation that you don't know what to cook for dinner? The solution is right here! Every meal can
+be unique, sometimes it just helps to give a look at some examples.
+
+A skillboost
+For all of those who think that cooking is difficult... They are wrong. Just follow our step-by-step guides! The
+important thing is to try, maybe and you will be shocked by your delicious meals.
+
+A new hobby
+Want to spend some time trying exotic recipes or some big classics? Well, you will discover that is a lot of fun! You
+could also share the kitchen with others and prepare meals together.
+
+
+About me
+
+My name is Gilbert, I'm 22 years old and I live in Northern Italy. Actually I work in a factory as a metalworker, but
+lately I started thinking that I could do something different, so I started following courses about python and I had
+a lot of fun!
+
+Despite nowadays, with the rise of AI, I've seen people take advantage of it to develop their ideas very fast, I wanted
+to start from the basic. Indeed, I believe that to learn something doing some hard work is always the best idea, so
+I decided that at least at the beginning I want to write personally all the rows of my code. In that way I can
+understand better what I'm doing and how everything works.
+
+This is my first ever personal project. The inspiration arrived quite straightforward: by looking at a problem that a
+lot of people have at home. I wanted to create something simple to use, but with a lot of different sources of
+inspiration, I hope that you enjoyed it!
