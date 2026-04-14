@@ -1,0 +1,37 @@
+{% include 'header.html' %}
+
+<div class="dark-pink" style="height:100%">
+    <div class="container py-5">
+        <h1 class="pb-5">
+            By Main Ingredient Search
+        </h1>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-info" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+            <form method="post" action="/main-ingredient-search">
+                <label for="ingredients" class="form-label">Choose your main ingredient:</label>
+                <input name="input" class="form-control" list="{{ ingredients }}" id="ingredients"
+                       placeholder="Type to search...">
+                <datalist id="{{ ingredients }}">
+
+                    {% for ingredient in ingredients %}
+                    <option value="{{ ingredient }}">
+                        {% endfor %}
+                </datalist>
+
+                <input type="submit" value="Submit" class="btn btn-info btn-green btn-lg px-4 me-md-2 my-3">
+            </form>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

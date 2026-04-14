@@ -27,7 +27,7 @@
                         </a>
 
                         <ul class="dropdown-menu">
-<!--                            <li><a class="dropdown-item" href="#">By main ingredient</a></li>-->
+                            <li><a class="dropdown-item" href="{{ url_for('main_ingredient_search') }}">By main ingredient</a></li>
 <!--                            <li><a class="dropdown-item" href="#">By name</a></li>-->
                             <li><a class="dropdown-item" href="{{ url_for('category_search') }}">By category</a></li>
                             <li><a class="dropdown-item" href="{{ url_for('area_search') }}">By area</a></li>
@@ -112,30 +112,30 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ example_meals[0][0]['strMealThumb'] }}" class="d-block img-fluid carousel-img mx-auto"
-                         alt="{{ example_meals[0][0]['strMeal'] }}">
+                    <img src="{{ example_meals[0]['strMealThumb'] }}" class="d-block img-fluid carousel-img mx-auto"
+                         alt="{{ example_meals[0]['strMeal'] }}">
                     <div class="carousel-caption d-block d-md-block">
                         <a type="button" class="btn btn-info btn-carousel btn-lg px-4 me-md-2"
-                           href="{{ url_for('get_recipe', meal_id=example_meals[0][0]['idMeal']) }}">
-                            {{ example_meals[0][0]['strMeal'] }}</a>
+                           href="{{ url_for('get_recipe', meal_id=example_meals[0]['idMeal']) }}">
+                            {{ example_meals[0]['strMeal'] }}</a>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ example_meals[1][0]['strMealThumb'] }}" class="d-block img-fluid carousel-img mx-auto"
-                         alt="{{ example_meals[1][0]['strMeal'] }}">
+                    <img src="{{ example_meals[1]['strMealThumb'] }}" class="d-block img-fluid carousel-img mx-auto"
+                         alt="{{ example_meals[1]['strMeal'] }}">
                     <div class="carousel-caption d-block d-md-block">
                         <a type="button" class="btn btn-info btn-carousel btn-lg px-4 me-md-2"
-                           href="{{ url_for('get_recipe', meal_id=example_meals[1][0]['idMeal']) }}">
-                            {{ example_meals[1][0]['strMeal'] }}</a>
+                           href="{{ url_for('get_recipe', meal_id=example_meals[1]['idMeal']) }}">
+                            {{ example_meals[1]['strMeal'] }}</a>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ example_meals[2][0]['strMealThumb'] }}" class="d-block img-fluid carousel-img mx-auto"
-                         alt="{{ example_meals[2][0]['strMeal'] }}">
+                    <img src="{{ example_meals[2]['strMealThumb'] }}" class="d-block img-fluid carousel-img mx-auto"
+                         alt="{{ example_meals[2]['strMeal'] }}">
                     <div class="carousel-caption d-block d-md-block">
                         <a type="button" class="btn btn-info btn-carousel btn-lg px-4 me-md-2"
-                           href="{{ url_for('get_recipe', meal_id=example_meals[2][0]['idMeal']) }}">
-                            {{ example_meals[2][0]['strMeal'] }}</a>
+                           href="{{ url_for('get_recipe', meal_id=example_meals[2]['idMeal']) }}">
+                            {{ example_meals[2]['strMeal'] }}</a>
                     </div>
                 </div>
             </div>
