@@ -3,7 +3,11 @@
 <div class="dark-pink" style="height:100%">
     <div class="container py-5">
         <h1 class="pb-5">
+            {% if ingredients %}
             By Main Ingredient Search
+            {% elif recipes %}
+            Choose your recipe:
+            {% endif %}
         </h1>
 
         {% with messages = get_flashed_messages() %}
@@ -16,7 +20,12 @@
         {% endif %}
         {% endwith %}
 
-            <form method="post" action="/main-ingredient-search">
+        {% if ingredients %}
+        <form method="post" action="/main-ingredient-search">
+            {% elif recipes %}
+            <form method="post" action="/name-search">
+                {% endif %}
+                {% if ingredients %}
                 <label for="ingredients" class="form-label">Choose your main ingredient:</label>
                 <input name="input" class="form-control" list="{{ ingredients }}" id="ingredients"
                        placeholder="Type to search...">
@@ -27,8 +36,20 @@
                         {% endfor %}
                 </datalist>
 
+                {% elif recipes %}
+                <label for="recipes" class="form-label">Choose your recipe:</label>
+                <input name="input" class="form-control" list="{{ recipes }}" id="recipes"
+                       placeholder="Type to search...">
+                <datalist id="{{ recipes }}">
+
+                    {% for recipe in recipes %}
+                    <option value="{{ recipe }}">
+                        {% endfor %}
+                </datalist>
+                {% endif %}
                 <input type="submit" value="Submit" class="btn btn-info btn-green btn-lg px-4 me-md-2 my-3">
             </form>
+        </form>
 
     </div>
 
