@@ -27,6 +27,19 @@
                 <li class="nav-item"><a class="nav-link nav-black fs-5 px-lg-3 py-3 py-lg-4"
                                         href="{{ url_for('about') }}">About</a>
                 </li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link nav-black fs-5 px-lg-3 py-3 py-lg-4"
+                                        href="{{ url_for('logout') }}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link nav-black fs-5 px-lg-3 py-3 py-lg-4"
+                                        href="{{ url_for('register') }}">Register</a>
+                </li>
+                <li class="nav-item"><a class="nav-link nav-black fs-5 px-lg-3 py-3 py-lg-4"
+                                        href="{{ url_for('login') }}">Login</a>
+                </li>
+                {% endif %}
+
                 <li class="nav-item">
                     <div class="dropdown d-flex align-items-center h-100">
                         <a class="btn btn-info btn-header btn-lg px-4 me-md-2 dropdown-toggle w-100" href="#"

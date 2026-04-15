@@ -127,3 +127,6 @@ html, body {
     background-color: black;
     border-color: #FFC1DA
 }
+
+.invalid-feedback {
+    color: black
