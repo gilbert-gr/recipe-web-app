@@ -36,6 +36,13 @@ bootstrap = Bootstrap5(app)
 app.config['SECRET_KEY'] = os.environ.get("APP_SECRET_KEY")
 
 
+def fetch_meals(url, params=None):
+    response = requests.get(url=url, params=params, timeout=5)
+    response.raise_for_status()
+    return response.json()["meals"]
+
+
+
 @app.context_processor
 def inject_date():
   return {"date": datetime.now().year}
@@ -44,9 +51,7 @@ def inject_date():
 
 @app.route("/")
 def home():
-    response = requests.get(url=GET_10_RANDOM_MEALS, timeout=5)
-    response.raise_for_status()
-    example_meals = response.json()["meals"]
+    example_meals = fetch_meals(url=GET_10_RANDOM_MEALS)
     print(example_meals)
 
     return render_template("index.html", example_meals=example_meals)
@@ -61,10 +66,7 @@ def about():
 
 @app.route("/random-meal")
 def get_random_meal():
-    response = requests.get(url=GET_RANDOM_MEAL_URL, timeout=5)
-    response.raise_for_status()
-
-    meal = response.json()["meals"]
+    meal = fetch_meals(url=GET_RANDOM_MEAL_URL)
 
     return render_template("recipe.html", meal=meal)
 
@@ -86,9 +88,7 @@ def search_by(choice):
     params = {
         method: choice,
     }
-    response = requests.get(url=SEARCH_BY_AREA_OR_CATEGORY_URL, params=params, timeout=5)
-    response.raise_for_status()
-    meals = response.json()["meals"]
+    meals = fetch_meals(url=SEARCH_BY_AREA_OR_CATEGORY_URL, params=params)
 
     return render_template("meals.html", meals=meals)
 
@@ -106,9 +106,7 @@ def main_ingredient_search():
         params = {
             "i": user_input
         }
-        response = requests.get(url=SEARCH_BY_MAIN_INGREDIENT, params=params, timeout=5)
-        response.raise_for_status()
-        meals = response.json()["meals"]
+        meals = fetch_meals(url=SEARCH_BY_MAIN_INGREDIENT, params=params)
 
         if not meals:
             flash("There are not recipes with that ingredient, be sure to click an element from the list")
@@ -138,10 +136,7 @@ def name_search():
         params = {
             "i": meal_id,
         }
-        response = requests.get(url=GET_RECIPE_BY_ID, params=params, timeout=5)
-        response.raise_for_status()
-
-        meal = response.json()["meals"]
+        meal = fetch_meals(url=GET_RECIPE_BY_ID, params=params)
         return render_template("recipe.html", meal=meal)
 
     return render_template("dropdown-search.html", recipes=RECIPES)
