@@ -23,3 +23,6 @@ API_KEY=your_key
 
 4. Run the app:
 python main.py
+
+## Future improvementes
+Add a my favourite page for logged users
