@@ -4,16 +4,18 @@ from forms import Register, Login
 from flask_bootstrap import Bootstrap5
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import String
+from sqlalchemy import String, Integer
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin, LoginManager, login_user, logout_user, current_user
+from flask_login import UserMixin, LoginManager, login_user, logout_user, current_user, login_required
 import requests
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 
+
+# VARIABLES
 
 COLOR_PALETTE = {
     "dark pink": "#FF90BB",
@@ -37,6 +39,9 @@ GET_10_RANDOM_MEALS = f"https://www.themealdb.com/api/json/v2/{API_KEY}/randomse
 SEARCH_BY_MAIN_INGREDIENT = f"https://www.themealdb.com/api/json/v2/{API_KEY}/filter.php"
 SEARCH_BY_NAME = f"https://www.themealdb.com/api/json/v2/{API_KEY}/search.php"
 
+
+# SETTING APP
+
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 app.config['SECRET_KEY'] = os.environ.get("APP_SECRET_KEY")
@@ -50,6 +55,7 @@ def load_user(user_id):
     return db.get_or_404(User, user_id)
 
 
+# CREATE DATABASE
 
 class Base(DeclarativeBase):
     pass
@@ -64,16 +70,34 @@ class User(UserMixin, db.Model):
     email: Mapped[str] = mapped_column(String, nullable=False, unique=True)
     password: Mapped[str] = mapped_column(String, nullable=False)
 
+
+class Favorite(db.Model):
+    __tablename__ = "favorite"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    recipe_id: Mapped[int] = mapped_column(Integer, nullable=False)
+    user_id: Mapped[int] = mapped_column(Integer, nullable=False)
+
+
 with app.app_context():
     db.create_all()
 
 
 
 def fetch_meals(url, params=None):
-    response = requests.get(url=url, params=params, timeout=5)
+    response = requests.get(url=url, params=params, timeout=10)
     response.raise_for_status()
     return response.json()["meals"]
 
+def is_favorite(meal_id):
+    result = db.session.execute(db.select(Favorite).where(
+        Favorite.user_id==current_user.id,
+        Favorite.recipe_id==meal_id
+    ))
+    favorite = result.scalar()
+    if favorite:
+        return True
+    else:
+        return False
 
 
 @app.context_processor
@@ -85,7 +109,6 @@ def inject_date():
 @app.route("/")
 def home():
     example_meals = fetch_meals(url=GET_10_RANDOM_MEALS)
-    print(example_meals)
 
     return render_template("index.html", example_meals=example_meals)
 
@@ -242,8 +265,58 @@ def get_recipe(meal_id):
         "i": meal_id,
     }
     meal = fetch_meals(url=GET_RECIPE_BY_ID, params=params)
-    return render_template("recipe.html", meal=meal)
+    return render_template("recipe.html", meal=meal, is_favorite=is_favorite(meal_id))
 
+
+@login_required
+@app.route("/add-favorite/<int:meal_id>")
+def add_favorite(meal_id):
+    existing = db.session.execute(
+        db.select(Favorite).where(
+            Favorite.user_id == current_user.id,
+            Favorite.recipe_id == meal_id
+        )
+    ).scalar()
+
+    if not existing:
+        recipe = Favorite(
+            recipe_id=meal_id,
+            user_id=current_user.id
+        )
+        db.session.add(recipe)
+        db.session.commit()
+    return redirect(url_for("get_recipe", meal_id=meal_id))
+
+
+@login_required
+@app.route("/remove-favorite/<int:meal_id>")
+def remove_favorite(meal_id):
+    result = db.session.execute(db.select(Favorite).where(
+        Favorite.user_id==current_user.id,
+        Favorite.recipe_id==meal_id
+    ))
+    favorite = result.scalar()
+    if favorite:
+        db.session.delete(favorite)
+        db.session.commit()
+
+    return redirect(url_for("get_recipe", meal_id=meal_id))
+
+
+@login_required
+@app.route("/get_favorites")
+def get_favorites():
+    result = db.session.execute(db.select(Favorite).where(Favorite.user_id==current_user.id))
+    favorites = result.scalars().all()
+
+    recipes = []
+    for favorite in favorites:
+        params = {
+            "i": favorite.recipe_id
+        }
+        recipe = fetch_meals(url=GET_RECIPE_BY_ID, params=params)
+        recipes.append(recipe[0])
+    return render_template("meals.html", meals=recipes)
 
 if __name__ == "__main__":
     app.run(debug=True)

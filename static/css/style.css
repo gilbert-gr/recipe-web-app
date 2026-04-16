@@ -113,7 +113,8 @@ html, body {
 }
 
 .btn-pink:hover {
-    background-color: #FF90BB
+    background-color: #FF90BB;
+    border-color: black
 }
 
 .btn-header {
@@ -130,3 +131,13 @@ html, body {
 
 .invalid-feedback {
     color: black
+}
+
+.btn-warning {
+    color: black;
+    border-color: black
+}
+
+.btn-warning:hover {
+    border-color: black
+}

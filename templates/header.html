@@ -31,6 +31,9 @@
                 <li class="nav-item"><a class="nav-link nav-black fs-5 px-lg-3 py-3 py-lg-4"
                                         href="{{ url_for('logout') }}">Logout</a>
                 </li>
+                <li class="nav-item"><a class="nav-link nav-black fs-5 px-lg-3 py-3 py-lg-4"
+                                        href="{{ url_for('get_favorites') }}">My Favorites</a>
+                </li>
                 {% else %}
                 <li class="nav-item"><a class="nav-link nav-black fs-5 px-lg-3 py-3 py-lg-4"
                                         href="{{ url_for('register') }}">Register</a>

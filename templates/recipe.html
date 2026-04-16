@@ -2,9 +2,20 @@
 
 <div class="dark-pink">
     <div class="container">
-        <h1 class="py-5 px-5">
+        <h1 class="pt-5 pb-3 px-5">
             <b>{{ meal[0]['strMeal'] }}</b>
         </h1>
+        {% if current_user.is_authenticated %}
+        {% if is_favorite %}
+        <a type="button" class="btn btn-warning btn-lg mx-5 mb-3"
+           href="{{ url_for('remove_favorite', meal_id=meal[0]['idMeal']) }}">
+            Remove from favorites</a>
+        {% else %}
+        <a type="button" class="btn btn-info btn-carousel btn-lg mx-5 mb-3"
+           href="{{ url_for('add_favorite', meal_id=meal[0]['idMeal']) }}">
+            Add to favorites</a>
+        {% endif %}
+        {% endif %}
         <div class="col-12 col-lg-6 text-center pb-5 px-5">
             <img class="img-fluid" src="{{ meal[0]['strMealThumb'] }}" alt="Recipe Image">
         </div>
