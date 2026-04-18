@@ -319,4 +319,4 @@ def get_favorites():
     return render_template("meals.html", meals=recipes)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
