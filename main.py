@@ -45,7 +45,7 @@ SEARCH_BY_NAME = f"https://www.themealdb.com/api/json/v2/{API_KEY}/search.php"
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 app.config['SECRET_KEY'] = os.environ.get("APP_SECRET_KEY")
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///recipes.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///recipes.db")
 
 login_manager = LoginManager()
 login_manager.init_app(app)
