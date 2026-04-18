@@ -88,16 +88,16 @@ def fetch_meals(url, params=None):
     response.raise_for_status()
     return response.json()["meals"]
 
-def is_favorite(meal_id):
+def check_favorite(meal_id):
+    if not current_user.is_authenticated:
+        return False
+
     result = db.session.execute(db.select(Favorite).where(
         Favorite.user_id==current_user.id,
         Favorite.recipe_id==meal_id
     ))
     favorite = result.scalar()
-    if favorite:
-        return True
-    else:
-        return False
+    return result.scalar() is not None
 
 
 @app.context_processor
@@ -265,7 +265,7 @@ def get_recipe(meal_id):
         "i": meal_id,
     }
     meal = fetch_meals(url=GET_RECIPE_BY_ID, params=params)
-    return render_template("recipe.html", meal=meal, is_favorite=is_favorite(meal_id))
+    return render_template("recipe.html", meal=meal, is_favorite=check_favorite(meal_id))
 
 
 @login_required
