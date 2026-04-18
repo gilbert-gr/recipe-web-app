@@ -6,7 +6,7 @@ A full-stack web application built with Flask that allows users to discover, exp
 
 ## 🌐 Live Demo
 
-*(Coming soon – deployment in progress)*
+https://recipe-web-app-cbzo.onrender.com
 
 ---
 
@@ -46,7 +46,7 @@ The application follows a simple full-stack architecture:
 
 * **Backend:** Python, Flask
 * **Frontend:** HTML, CSS, Bootstrap
-* **Database:** SQLite (SQLAlchemy ORM)
+* **Database:** PostgreSQL (SQLAlchemy ORM)
 * **Authentication:** Flask-Login, Werkzeug Security
 * **API Integration:** TheMealDB
 * **Environment Management:** python-dotenv
