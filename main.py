@@ -97,7 +97,7 @@ def check_favorite(meal_id):
         Favorite.recipe_id==meal_id
     ))
     favorite = result.scalar()
-    return result.scalar() is not None
+    return favorite is not None
 
 
 @app.context_processor
